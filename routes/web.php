@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/login', 'AuthLoginController@login')->name('api-login-route');
+//Route::post('/login', 'AuthLoginController@login')->name('api-login-route');
 Route::get('/', function () {
     return view('welcome');
 });
