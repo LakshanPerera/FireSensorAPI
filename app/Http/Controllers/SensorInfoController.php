@@ -90,8 +90,26 @@ class SensorInfoController extends Controller
      */
     public function update(Request $request, SensorInfo $sensorinfo)
     {
-        $sensorinfo->update($request->all());
+        $sensorinfo->co2_level = $request->co2_level;
+        $sensorinfo->smoke_level = $request->smoke_level;
+        $sensorinfo->save();
         return $sensorinfo;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\SensorInfo  $sensorinfo
+     * @return \Illuminate\Http\Response
+     */
+    public function adminUpdate(Request $request, SensorInfo $sensor)
+    {
+        $sensor->room_no = $request->room_no;
+        $sensor->floor_no = $request->floor_no;
+        $sensor->save();
+
+        return $sensor;
     }
 
     /**

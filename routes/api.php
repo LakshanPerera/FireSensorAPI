@@ -27,3 +27,5 @@ Route::resource("/sensorinfo", "SensorInfoController");
 
 Route::get('/isregistered/{id}', 'SensorInfoController@isRegistered');
 
+Route::middleware('auth:api')->put('/update/{sensor}', 'SensorInfoController@adminUpdate');
+
