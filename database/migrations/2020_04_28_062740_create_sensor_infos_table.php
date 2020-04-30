@@ -19,7 +19,7 @@ class CreateSensorInfosTable extends Migration
             $table->integer('co2_level');
             $table->integer('room_no');
             $table->integer('floor_no');
-            $table->boolean('is_active');
+//            $table->boolean('is_active');
             $table->timestamps();
         });
     }

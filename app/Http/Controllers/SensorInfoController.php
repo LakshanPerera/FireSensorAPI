@@ -38,7 +38,7 @@ class SensorInfoController extends Controller
         $s->co2_level = 0;
         $s->room_no = $validatedData["room_no"];
         $s->floor_no = $validatedData["floor_no"];
-        $s->is_active = false;
+//        $s->is_active = false;
         $s->updated_at = null;
         $s->save();
 
@@ -109,6 +109,8 @@ class SensorInfoController extends Controller
 
         $sensor->room_no = $validatedData["room_no"];
         $sensor->floor_no = $validatedData["floor_no"];
+        // make sure that the updated_at timestamp on floor and room number updates
+        $sensor->timestamps = false;
         $sensor->save();
 
         return $sensor;
