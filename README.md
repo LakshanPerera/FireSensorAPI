@@ -1,79 +1,100 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Sensor Reading API
+This is an API that reads the fire sensor information from the FireSensors and
+allows the front-end applications(Web/Desktop) to read those values.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### Get Started
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Prerequisites:
+    * PHP 7.0+
+    * Composer
+    * XAMPP or any equivalent (for local development)
+ 
+ 2. Steps for getting started:
+    * Clone the repo
+    ```
+    git clone https://github.com/LakshanPerera/FireSensorAPI.git
+    ```
+    * CD into the project folder
+    ```
+    cd FireSensorAPI
+    ```
+    * Run composer install (make sure that the XAMPP server is running)
+    ```
+    composer install
+    ```
+    * Generate a unique key
+    ```
+    php artisan key:generate
+    ```
+    * Update the DB info in the .env, and then run the migrations (make sure DB server is running)
+    ```
+    php artisan migrate
+    ``` 
+    * Passport initialization (You will get the keys after you run this)
+    ```
+    php artisan passport:install
+    ```
+    * Run the API
+    ```
+    php artisan serve
+    ```
+    * Now the local server will be running, you can start test the API using a program like Postman or Insomnia by making web requests to the following end points
+    
+ 3. API End points
+    > All responses and the data bodies are in `application/json` format
+ 
+    * Sign in as the admin, you will receive the `access_token` after logging in
+    ```
+    POST: /oauth/token
+    BODY: {
+        "grant_type":"password",
+        "client_id" : "2",
+        "client_secret":"{passport_grant_client_key}",
+        "username" : "admin@admin.com",
+        "password" : "password"
+    }
+    ```
+    
+    * Get the sensor data
+    ```
+    GET: /api/sensorinfo
+    ```
+    
+    * Get the sensor data of a specific sensor
+    ```
+    GET: /api/sensorinfo/{id}
+    ```
+    
+    * Check if a sensor is a registered one(Sensor Application)
+    ```
+    GET: /api/isregistered/{id}
+    ```
+    
+    * Add/Register a new Sensor(Admin only)
+    ```
+    POST: /api/sensorinfo
+    HEADERS: {
+        Authorization: "Bearer {admin_token}"
+    }
+    ``` 
+    
+    * Update the Sensor Readings(by SensorApplication)
+    ```
+    PUT: /api/sensorinfo/{id}
+    ```
+    
+    * Update the Sensor Room/Floor Numbers(Admin only)
+    ```
+    PUT: api/update/{id}
+    HEADERS: {
+        Authorization: "Bearer {admin_token}"
+    }
+    ```
+    
+    * Delete a Sensor (Admin only)
+    ```
+    DELETE: api/update/{id}
+    HEADERS: {
+        Authorization: "Bearer {admin_token}"
+    }
+    ```
