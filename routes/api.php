@@ -29,4 +29,5 @@ Route::get('/isregistered/{id}', 'SensorInfoController@isRegistered');
 
 Route::middleware('auth:api')->put('/update/{sensor}', 'SensorInfoController@adminUpdate');
 Route::middleware('auth:api')->post('/sensorinfo', 'SensorInfoController@store');
+Route::middleware('auth:api')->delete('/sensorinfo/{sensor}', 'SensorInfoController@destroy');
 

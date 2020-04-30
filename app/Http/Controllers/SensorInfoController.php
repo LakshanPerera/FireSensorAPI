@@ -119,13 +119,13 @@ class SensorInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\SensorInfo $sensorInfo
+     * @param \App\SensorInfo $sensor
      * @return SensorInfo
      * @throws \Exception
      */
-    public function destroy(SensorInfo $sensorInfo)
+    public function destroy(SensorInfo $sensor)
     {
-        $sensorInfo->delete();
-        return $sensorInfo;
+        $sensor->delete();
+        return $sensor;
     }
 }
