@@ -2,6 +2,7 @@
 This is an API that reads the fire sensor information from the FireSensors and
 allows the front-end applications(Web/Desktop) to read those values.
 
+Current version of the API is hosted at https://fire-alarm-api-ds.herokuapp.com/
 ### Get Started
 
 1. Prerequisites:
