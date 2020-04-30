@@ -11,35 +11,47 @@ Current version of the API is hosted at https://fire-alarm-api-ds.herokuapp.com/
     * XAMPP or any equivalent (for local development)
  
  2. Steps for getting started:
-    * Clone the repo
+    * Clone the repository
     ```
     git clone https://github.com/LakshanPerera/FireSensorAPI.git
     ```
+    
     * CD into the project folder
     ```
     cd FireSensorAPI
     ```
+    
     * Run composer install (make sure that the XAMPP server is running)
     ```
     composer install
     ```
+    
+    * Create a `.env` file
+    ```
+    cp .env.example .env
+    ```
+    
     * Generate a unique key
     ```
     php artisan key:generate
     ```
+    
     * Update the DB info in the .env, and then run the migrations (make sure DB server is running)
     ```
     php artisan migrate
     ``` 
+    
     * Passport initialization (You will get the keys after you run this)
     ```
     php artisan passport:install
     ```
+    
     * Run the API
     ```
     php artisan serve
     ```
-    * Now the local server will be running, you can start test the API using a program like Postman or Insomnia by making web requests to the following end points
+    
+    * Now the local server will be running, you can start testing the API using a program like Postman or Insomnia by making web requests to the following end points
     
  3. API End points
     > All responses and the data bodies are in `application/json` format
