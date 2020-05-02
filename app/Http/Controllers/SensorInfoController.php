@@ -65,11 +65,11 @@ class SensorInfoController extends Controller
     public function isRegistered($id)
     {
         // find the sensor from the Id
-        $user = SensorInfo::find($id);
+        $sensor = SensorInfo::find($id);
         // if the Sensor with that ID is not available send back this
-        if($user === null) return ["isAvailable" => false];
+        if($sensor === null) return ["isAvailable" => false];
         // if the sensor is available send
-        return ["isAvailable" => true, "info" => $user];
+        return ["isAvailable" => true, "info" => $sensor];
     }
 
     /**
@@ -123,9 +123,13 @@ class SensorInfoController extends Controller
      * @return SensorInfo
      * @throws \Exception
      */
-    public function destroy(SensorInfo $sensor)
+    public function destroy($id)
     {
+        // find the sensor from the Id
+        $sensor = SensorInfo::find($id);
+        // delete it from the database
         $sensor->delete();
+
         return $sensor;
     }
 }

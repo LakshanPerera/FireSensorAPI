@@ -106,7 +106,7 @@ Current version of the API is hosted at https://fire-alarm-api-ds.herokuapp.com/
     
     * Delete a Sensor (Admin only)
     ```
-    DELETE: api/update/{id}
+    DELETE: api/sensorinfo/{id}
     HEADERS: {
         Authorization: "Bearer {admin_token}"
     }
