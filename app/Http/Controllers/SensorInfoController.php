@@ -18,10 +18,11 @@ class SensorInfoController extends Controller
     {
         return SensorInfo::all();
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return SensorInfo
      */
     public function store(Request $request)
@@ -48,7 +49,7 @@ class SensorInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SensorInfo  $sensorInfo
+     * @param \App\SensorInfo $sensorInfo
      * @return SensorInfo
      */
     public function show(SensorInfo $sensorinfo)
@@ -59,7 +60,7 @@ class SensorInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SensorInfo  $sensorInfo
+     * @param \App\SensorInfo $sensorInfo
      * @return array
      */
     public function isRegistered($id)
@@ -67,7 +68,7 @@ class SensorInfoController extends Controller
         // find the sensor from the Id
         $sensor = SensorInfo::find($id);
         // if the Sensor with that ID is not available send back this
-        if($sensor === null) return ["isAvailable" => false];
+        if ($sensor === null) return ["isAvailable" => false];
         // if the sensor is available send
         return ["isAvailable" => true, "info" => $sensor];
     }
@@ -75,8 +76,8 @@ class SensorInfoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SensorInfo  $sensorinfo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\SensorInfo $sensorinfo
      * @return SensorInfo
      */
     public function update(Request $request, SensorInfo $sensorinfo)
@@ -96,8 +97,8 @@ class SensorInfoController extends Controller
     /**
      * Update the specified attributes as admin resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SensorInfo  $sensorinfo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\SensorInfo $sensorinfo
      * @return SensorInfo
      */
     public function adminUpdate(Request $request, SensorInfo $sensor)
@@ -128,7 +129,8 @@ class SensorInfoController extends Controller
         // find the sensor from the Id
         $sensor = SensorInfo::find($id);
         // delete it from the database
-        $sensor->delete();
+        if ($sensor) $sensor->delete();
+        else return ["error" => "Sensor with that ID could not be found!"];
 
         return $sensor;
     }
